@@ -18,6 +18,9 @@ Documents for supervisor review (Prof. Mohamed Kholief). Code is kept out of the
 | 10 | [project-context.md](project-context.md) | Domain background, 2026 Suez situation, literature (verified citations), competitors |
 | 11 | [strategy.md](strategy.md) | Commercialization and startup path |
 | 12 | [meeting-notes.md](meeting-notes.md) | Meeting and customer-interview templates |
+| 13 | [course/senior-project-1-requirements.md](course/senior-project-1-requirements.md) | Department documentation template (4 chapters) and our status on each item |
+| 14 | [bill-of-lading-flow.md](bill-of-lading-flow.md) | How an import shipment moves: who issues the bill of lading, who sees it, B/L types, Egypt steps (ACI, Nafeza, delivery order), and where RASED fits |
+| 15 | [positioning.md](positioning.md) | Competitors (incl. Nowlun), RASED's uniqueness, the ML models, problem and solution statements, system text diagram |
 
 ## Status in one paragraph (2026-10-07)
 

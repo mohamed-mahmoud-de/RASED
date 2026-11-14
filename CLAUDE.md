@@ -1,9 +1,9 @@
-# CLAUDE.md — Rasid: Smart Port & Maritime Congestion Predictor
+# CLAUDE.md — RASED: Smart Port & Maritime Congestion Predictor
 
 > Persistent project memory for Claude Code sessions. Keep this file short and current; details live in `docs/`.
-> Last updated: 2026-10-14
+> Last updated: 2026-11-14
 
-**Working name:** Rasid (راصد — Arabic for "observer"), taken from the project folder name. *Confirm with team.*
+**Name:** RASED (راصد — Arabic for "observer"). Renamed from "Rasid" at the supervisor's request (2026-10-20: "Rasid" reads as رصيد, phone credit); proposal v3 and logo use RASED (2026-11-14).
 **Formal title:** Smart Port & Maritime Congestion Predictor — An AIS-Based Predictive Data Engineering & MLOps Pipeline for Egyptian Maritime Gateways.
 
 ## What this is
@@ -94,7 +94,15 @@ Full detail: `docs/architecture.md`.
 - The whole stack must run under docker-compose on one 16 GB machine, using profiles.
 - SAR / satellite imagery is out of scope.
 
-## Current status (2026-10-07)
+## Current status (2026-11-14)
+
+- **Direction (D-010, ~2026-11-01):** after meeting Captain-2 face to face, RASED focuses on **import/export shipments**: importer/forwarder adds a B/L → ship tracked → anchorage-wait forecast → realistic berth date at Alexandria → papers-vs.-ship warning + cost of delay. Horizon is **days** (1–3), not 6–12 h. The "What this is" section above still describes the old port-operator framing; read `docs/positioning.md` first.
+- **Closest competitor: Nowlun** (Alexandria digital forwarder): free tracking, B/L upload, WhatsApp alerts, Arabic, Port Pulse (no forecast). Our edge = prediction, papers-vs.-ship, neutrality, cost in EGP. Proposed decisions P-012…P-016 (vessel view, grounded chatbot, horizon, extra features).
+- **Proposal v3 (2026-11-14)** at `docs/proposal/proposal.pdf`, built from the prototype. Proposes new milestones (P-018).
+- **Prototype (2026-11-14):** clickable English/Arabic mock-up with sample data, `build/prototype/rased-prototype.html` (local, gitignored), shared as a private claude.ai artifact. Next: after team approval, extract FR/NFR + feature matrix from it and rewrite the proposal as RASED.
+- New docs: `docs/bill-of-lading-flow.md` (who issues the B/L, 19-step sequence, B/L types, Egypt ACI/Nafeza/D/O), `docs/positioning.md` (competitors, uniqueness, ML, problem/solution statements, text diagram).
+
+### Earlier status (2026-10-07)
 
 - Docs: **proposal v2 (2026-10-14)** at `docs/proposal/proposal.pdf`: one document with problem statement, solution, competitor analysis and the full SRS requirement list (24 pages). The editable .docx is rebuilt from `build/proposal/` (gitignored); the old Gamma deck and brief were deleted (still in git history). Planning docs in `docs/`; reports in `docs/reports/`.
 - Data-source research done. Every free live AIS feed has 0% Egypt coverage; full catalog in `docs/data-sources.md`.
@@ -127,7 +135,7 @@ Full detail: `docs/architecture.md`.
 
 All fixed. The 9 errors in the first proposal were corrected on 2026-10-09; the proposal was merged into one document on 2026-10-14 (team problem statement + team competitor analysis + SRS requirements, logo v2). The old Gamma deck (unsourced "5.89 days" figure, "6 People") and the old brief (aisstream.io data sources) were deleted on 2026-10-14; a new deck must be built from the current proposal, not from them.
 
-**Still missing:** the UI prototype (team, Figma); the planned screens S1–S9 in proposal §4.2 are placeholders. The proposal source (.docx) is rebuilt with `build/proposal/` (`node build_proposal.js` then `finalize.ps1`).
+**Proposal v3 (2026-11-14)** replaces v2: import/export focus, 12 prototype screens S1–S12, feature matrix, 195 requirements (112 functional). Source: `build/proposal/build_proposal.js` + `srs.js` (`node build_proposal.js proposal-raw.docx` then `finalize.ps1 -In … -OutDocx … -OutPdf …`); v2 source kept in `build/proposal/archive_rasid_v2/`.
 
 ## Context files
 
@@ -142,8 +150,12 @@ All fixed. The 9 errors in the first proposal were corrected on 2026-10-09; the 
 - `docs/meeting-notes.md` — meeting template and log
 - `docs/strategy.md` — commercialization, enterprise, startup, production roadmap, team process
 - `docs/reports/` — data-quality report (Port Authority board + PortWatch), GFW validation, figures
-- `docs/proposal/proposal.pdf` — **the graduation project proposal** (problem statement, solution, competitor analysis, 149 requirements)
-- `brand/BRAND.md` — logo, colours, fonts, which file to use where. **Official logo (v2, radar mark + Outfit capitals):** `brand/rasid_logo_v2.png` (covers, slides), `brand/rasid_logo_v2_horizontal.png` (document headers), `brand/rasid_appicon_v2.png` (avatar). v1 logo files deleted 2026-10-14
+- `docs/positioning.md` — **current direction**: competitors (Nowlun), uniqueness, ML, problem/solution statements
+- `docs/bill-of-lading-flow.md` — how an import shipment and its B/L move, Egypt steps, where RASED fits
+- `docs/shipment-data-sources.md` — B/L schemas and shipment data sources (tested 2026-10-30)
+- `docs/field-research/` — captain interviews, survey, interview guide
+- `docs/proposal/proposal.pdf` — **the graduation project proposal v3** (import/export focus: problem, solution, competitors incl. Nowlun, feature matrix, 195 requirements, 30 pages)
+- `brand/BRAND.md` — logo, colours, fonts, which file to use where. **Official logo (radar mark + Outfit capitals, RASED wordmark since 2026-11-14):** `brand/rased_logo.png` (covers, slides), `brand/rased_logo_horizontal.png` (document headers), `brand/rased_appicon.png` (avatar); regenerate with `brand/rased_logo.py`. RASID files removed (git history)
 
 ## Instructions for Claude
 
