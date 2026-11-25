@@ -12,3 +12,14 @@ quality/
 requirements.txt
 .env.example
 docs/reports/*.json
+
+# Brand work files (renders can be added to docs/ deliberately)
+brand/*.py
+*.blend
+*.blend1
+
+# Local document build scripts (not documents)
+build/
+
+# Local Claude Code / app config
+.claude/

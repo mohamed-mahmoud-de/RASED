@@ -1,9 +1,9 @@
-# CLAUDE.md — Rasid: Smart Port & Maritime Congestion Predictor
+# CLAUDE.md — RASED: Smart Port & Maritime Congestion Predictor
 
 > Persistent project memory for Claude Code sessions. Keep this file short and current; details live in `docs/`.
-> Last updated: 2026-10-07
+> Last updated: 2026-11-14
 
-**Working name:** Rasid (راصد — Arabic for "observer"), taken from the project folder name. *Confirm with team.*
+**Name:** RASED (راصد — Arabic for "observer"). Renamed from "Rasid" at the supervisor's request (2026-10-20: "Rasid" reads as رصيد, phone credit); proposal v3 and logo use RASED (2026-11-14).
 **Formal title:** Smart Port & Maritime Congestion Predictor — An AIS-Based Predictive Data Engineering & MLOps Pipeline for Egyptian Maritime Gateways.
 
 ## What this is
@@ -18,20 +18,22 @@
 
 ## Academic context
 
-- Alexandria University, **Faculty of Science, SIM (Software Industry & Multimedia) Department**
+- **Alexandria University — Faculty of Science — Software Industry and Multimedia (SIM) Department** (confirmed 2026-10-09; use exactly this wording)
 - Supervisor: **Prof. Mohamed Kholief**
 - Department requirement: Data Engineering + MLOps project
 - Academic year 2026/27. Defense date TBC, roadmap assumes ~June 2027.
 
-## Team (authoritative roster: 5 people)
+## Team (authoritative roster: 5 people, confirmed 2026-10-09)
+
+Use these names, roles and this order in every document.
 
 | Member | Role | Owns |
 |---|---|---|
-| Mohamed Mahmoud | **Team Leader**, Data Engineer & MLOps Engineer | W5 MLOps & platform; integration; supervisor liaison |
+| Mohamed Mahmoud | **Team Lead** — MLOps Engineer & Data Engineer | W5 MLOps & platform; integration; supervisor liaison |
+| Reem Adel | Data Engineer | Workstream TBD |
+| Alhassan Mohamed | Data Engineer | Workstream TBD |
 | Youssef Nasser | Data Engineer | Workstream TBD |
 | Youssef Elkomy | Data Engineer | Workstream TBD |
-| Alhassan Mohamed | Data Engineer | Workstream TBD |
-| Reem Adel | Data Engineer | Workstream TBD |
 
 Workstreams W1–W5 are defined in `docs/roadmap.md`. **Gap:** the proposal assigns no one to modeling and evaluation (W4). Assign an owner.
 
@@ -85,16 +87,25 @@ Full detail: `docs/architecture.md`.
 
 ## Hard constraints
 
-- **GitHub is docs-only (D-009):** the repo (https://github.com/mohamed-mahmoud-de/RASID, public) holds only `docs/`, `README.md`, `CLAUDE.md` and `.gitignore` until the supervisor has reviewed the documents. **Never push code** (`collector/`, `quality/`, `requirements.txt`, `.env.example` are gitignored).
+- **GitHub is docs-only (D-009):** the repo (https://github.com/mohamed-mahmoud-de/RASID, public) holds only `docs/`, `brand/` (images + `BRAND.md`), `README.md`, `CLAUDE.md` and `.gitignore` until the supervisor has reviewed the documents. **Never push code** (`collector/`, `quality/`, `requirements.txt`, `.env.example`, `brand/*.py`, `*.blend` are gitignored).
 - **No paid data, no hardware** (team decision 2026-10-06).
 - GFW is non-commercial only (CC BY-NC 4.0, attribution "Powered by Global Fishing Watch").
 - Poll the Port Authority board politely: ≥ 2 s between requests, at most every 30 min, project named in the User-Agent. Never publish raw scraped data.
 - The whole stack must run under docker-compose on one 16 GB machine, using profiles.
 - SAR / satellite imagery is out of scope.
 
-## Current status (2026-10-07)
+## Current status (2026-11-25)
 
-- Docs: proposal, brief and deck in `docs/proposal/`; planning docs in `docs/`; reports in `docs/reports/`.
+- **Documentation (Senior Project 1):** one task PDF per step in `docs/course/` (Ch 1–2 send 29 Nov, Ch 3 6 Dec, Ch 4 + full document 13 Dec). Tracked in Jira space RAS (3 epics, 24 tasks, 3 one-week sprints; D-012). Teammates still to be invited to Jira.
+- **Direction (D-010, ~2026-11-01):** after meeting Captain-2 face to face, RASED focuses on **import/export shipments**: importer/forwarder adds a B/L → ship tracked → anchorage-wait forecast → realistic berth date at Alexandria → papers-vs.-ship warning + cost of delay. Horizon is **days** (1–3), not 6–12 h. The "What this is" section above still describes the old port-operator framing; read `docs/positioning.md` first.
+- **Closest competitor: Nowlun** (Alexandria digital forwarder): free tracking, B/L upload, WhatsApp alerts, Arabic, Port Pulse (no forecast). Our edge = prediction, papers-vs.-ship, neutrality, cost in EGP. Proposed decisions P-012…P-016 (vessel view, grounded chatbot, horizon, extra features).
+- **Proposal v3 (2026-11-14)** at `docs/proposal/proposal.pdf`, built from the prototype. Proposes new milestones (P-018).
+- **Prototype (2026-11-14):** clickable English/Arabic mock-up with sample data, `build/prototype/rased-prototype.html` (local, gitignored), shared as a private claude.ai artifact. Next: after team approval, extract FR/NFR + feature matrix from it and rewrite the proposal as RASED.
+- New docs: `docs/bill-of-lading-flow.md` (who issues the B/L, 19-step sequence, B/L types, Egypt ACI/Nafeza/D/O), `docs/positioning.md` (competitors, uniqueness, ML, problem/solution statements, text diagram).
+
+### Earlier status (2026-10-07)
+
+- Docs: **proposal v2 (2026-10-14)** at `docs/proposal/proposal.pdf`: one document with problem statement, solution, competitor analysis and the full SRS requirement list (24 pages). The editable .docx is rebuilt from `build/proposal/` (gitignored); the old Gamma deck and brief were deleted (still in git history). Planning docs in `docs/`; reports in `docs/reports/`.
 - Data-source research done. Every free live AIS feed has 0% Egypt coverage; full catalog in `docs/data-sources.md`.
 - Local code (not on GitHub):
   - `collector/apa_scraper.py`: Port Authority board → `data/bronze/apa/`
@@ -121,17 +132,11 @@ Full detail: `docs/architecture.md`.
 | M4 | 2027-05-09 | Feature freeze; backtests (incl. Ever Given); pilot/customer evidence |
 | M5 | ~2027-06 | Thesis + defense (date TBC) |
 
-## Known errors in submitted materials (fix before the next submission)
+## Known errors in submitted materials
 
-1. **Team size:** the proposal lists 6 names, with "Mohamed Mahmoud" appearing twice ("Mohamed Mahmoud Ahmed" and "Mohamed Mahmoud (Zane) — MLOps Lead"). The brief says 6 and the deck says "6 People" but shows 4 DE + 1 MLOps. The real team is **5**.
-2. **Faculty:** the proposal cover says "Faculty of Computer & Data Science". It should be **Faculty of Science, SIM Department**.
-3. **Names to confirm:** "Ream Adel Mohamed" vs Reem Adel; "Youssef Mohamed Mostafa", assumed to be Youssef Elkomy.
-4. **Peng citation:** it should read Peng, W., Bai, X., Yang, D., Yuen, K. F., & Wu, J. (**2023**), *Maritime Policy & Management*, 50(7), 835–860. The proposal has "Peng, P. … 2022".
-5. **PLOS One paper** (Chico et al., 2025, doi:10.1371/journal.pone.0320129): the zone near Port Said is the **North Anchorage**. The South Anchorage is near Suez port. The proposal has this backwards.
-6. **"5.89 days median wait"** (deck slide 2): no source found, and it is not in the PLOS paper. Cite it or remove it.
-7. **Leftover scope:** the proposal's risk table says "if Alexandria alone is too sparse". After D-008 Alexandria is the live showcase, so rewrite that risk.
-8. **Data sources are out of date:** the proposal names aisstream.io + Kaggle as the AIS sources. Replace with D-008 (GFW for Port Said/Suez, the Port Authority board for Alexandria; aisstream has 0% Egypt coverage). The Ever Given backtest is now **feasible for free** via GFW.
-9. The MIT thesis (Budiman, 2024) reference has not been verified yet.
+All fixed. The 9 errors in the first proposal were corrected on 2026-10-09; the proposal was merged into one document on 2026-10-14 (team problem statement + team competitor analysis + SRS requirements, logo v2). The old Gamma deck (unsourced "5.89 days" figure, "6 People") and the old brief (aisstream.io data sources) were deleted on 2026-10-14; a new deck must be built from the current proposal, not from them.
+
+**Proposal v3 (2026-11-14)** replaces v2: import/export focus, 12 prototype screens S1–S12, feature matrix, 195 requirements (112 functional). Source: `build/proposal/build_proposal.js` + `srs.js` (`node build_proposal.js proposal-raw.docx` then `finalize.ps1 -In … -OutDocx … -OutPdf …`); v2 source kept in `build/proposal/archive_rasid_v2/`.
 
 ## Context files
 
@@ -146,7 +151,12 @@ Full detail: `docs/architecture.md`.
 - `docs/meeting-notes.md` — meeting template and log
 - `docs/strategy.md` — commercialization, enterprise, startup, production roadmap, team process
 - `docs/reports/` — data-quality report (Port Authority board + PortWatch), GFW validation, figures
-- `docs/proposal/` — original proposal (.docx), brief (.md), deck (.pdf)
+- `docs/positioning.md` — **current direction**: competitors (Nowlun), uniqueness, ML, problem/solution statements
+- `docs/bill-of-lading-flow.md` — how an import shipment and its B/L move, Egypt steps, where RASED fits
+- `docs/shipment-data-sources.md` — B/L schemas and shipment data sources (tested 2026-10-30)
+- `docs/field-research/` — captain interviews, survey, interview guide
+- `docs/proposal/proposal.pdf` — **the graduation project proposal v3** (import/export focus: problem, solution, competitors incl. Nowlun, feature matrix, 195 requirements, 30 pages)
+- `brand/BRAND.md` — logo, colours, fonts, which file to use where. **Official logo (radar mark + Outfit capitals, RASED wordmark since 2026-11-14):** `brand/rased_logo.png` (covers, slides), `brand/rased_logo_horizontal.png` (document headers), `brand/rased_appicon.png` (avatar); regenerate with `brand/rased_logo.py`. RASID files removed (git history)
 
 ## Instructions for Claude
 

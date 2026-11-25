@@ -9,7 +9,33 @@ Research date: 2026-10-06. Focus: Port Said and the Suez Canal. Alexandria appea
 
 **Relevance:** ★★★ directly measures waiting or queues · ★★ throughput / validation · ★ supplementary
 
-## Bottom line
+## Current data inventory (2026-11-14, after the import/export pivot D-010)
+
+**Every source RASED uses is real.** Nothing is invented for training or evaluation (D-005). Simulation appears only in two places, both for demos: the replay simulator (real history re-played as if live) and demo B/Ls (real voyages, invented shipper/consignee/cargo).
+
+| Source | Kind | What it gives RASED | Delay | Quality | Collected on disk |
+|---|---|---|---|---|---|
+| Global Fishing Watch (AIS presence + port visits) | **Real** (satellite + coastal AIS) | Anchorage queue and waiting time per ship → **training labels**; ship voyage history | ~4–5 days | ✅ Good: Port Said 24/24 h, Alexandria 168/168 h, Ever Given test passed. ⚠️ Coarse ship types (57% "OTHER"), hourly, **non-commercial licence** | ⚠️ Only Port Said 9 Mar–13 Apr 2021 (Ever Given) + Alexandria 26 Sep–3 Oct 2026. **No backfill yet** |
+| Alexandria Port Authority board | **Real, official, live** | Expected / in-port / departed ships, official arrival and berth times → **live queue + ground truth** | Live (poll 30 min) | ⚠️ Messy: 40/76 in-port records >60 days old, stale ETAs, placeholder IMOs; no outer-anchorage queue; permission requested, not granted | ❌ **Only 2 snapshots (6 Oct, 30 Oct 2026). Poller not running** |
+| alexcont.com (Alexandria Container Terminal) | **Real, live** | Container ships: ETA, ATA, berth, completion; 26 days ahead | Updated irregularly (not daily) | ✅ Good for container ground truth | ❌ Tested once (30 Oct), no collector |
+| ShipInfo.net | **Real** AIS | Ship name → IMO; coarse position | ≥14 h | ⚠️ 60 requests/day | Tested only |
+| Open-Meteo | **Real** weather (history + forecast) | Wind, waves → "why" and storm delays | Live | ✅ Good | ❌ Not integrated yet |
+| IMF PortWatch | **Real**, AIS-derived counts | Daily port calls / canal transits → validation | ~2–4 days | ✅ Validation only (no waits) | ✅ Saved in `data/reference/` |
+| Suez Canal Authority | **Real**, official | Monthly totals → validation | Monthly | ✅ Official | Docs only |
+| searoute, UN/LOCODE, DCSA eBL schema | **Real** tools / standards (not data) | Sea distance → baseline ETA; port codes; B/L field layout | — | ✅ | Installed / downloaded |
+| User input (B/Ls, papers checklist) | **Real**, from customers | The shipments to follow; ACID / originals / D/O / customs status | — | ❓ None yet | ❌ Ask for 3–5 redacted B/Ls |
+| Carrier tracking APIs (Maersk, CMA CGM, Hapag-Lloyd) | **Real** | Container events | Live | ❓ Need team accounts | ❌ |
+| Carrier Egypt demurrage/detention tariffs | **Real** (public notices) | Free days + daily rates → cost in EGP | — | ❓ | ❌ Not collected |
+| Replay simulator | **Simulation of real data** | Re-streams GFW/Bronze history as if live (Port Said demo, tests) | — | ✅ Honest if labelled as replay | Planned |
+| Demo B/Ls | **Synthetic user input on real voyages** | Demo shipments; never used to train or evaluate | — | Allowed by supervisor for demos | Recipe in [shipment-data-sources.md](shipment-data-sources.md) |
+
+**Verdict:** the sources are good enough for the thesis, but **we hold very little data**, and the product now centres on Alexandria (Port Said stays for the Ever Given backtest). The critical gaps:
+1. **The Port Authority board is not being collected.** Two snapshots in five weeks; history that isn't polled is lost for good. Fix O-004 first.
+2. **GFW is ~5 days late**, so it can train the model but cannot show today's queue. The live queue for a 1–3 day forecast must come from the board and alexcont.
+3. **No GFW backfill** for Alexandria or Port Said (2017 → now).
+4. **GFW is non-commercial.** Fine for the thesis; a company would need a paid AIS licence.
+
+## Bottom line (2026-10-06 research)
 
 1. **No free real-time source covers Port Said or the Suez Canal.** All three free live AIS networks were tested, and none hears Egyptian waters.
 2. **The best free source is Global Fishing Watch** (satellite AIS). It provides hourly per-ship presence and port-visit events from 2012 to about 3–4 days ago, which is enough to measure queues and waiting times historically.
