@@ -2,6 +2,8 @@
 
 Department template "Senior Project1 Documentation" (original: [senior-project-1-requirements.pdf](senior-project-1-requirements.pdf)). Prof. Kholief asked for it at the 2026-10-20 meeting (`../meeting-notes.md`). **Chapters 1–2 were due ~2026-10-27.** The due dates for chapters 3–4 are not known yet.
 
+**Task lists, one page per step (2026-11-23):** [Chapters 1–2](rased-ch1-2-tasks.pdf) (send Sun 29 Nov), [Chapter 3](rased-ch3-tasks.pdf) (Sun 6 Dec), [Chapter 4 + full document](rased-ch4-tasks.pdf) (Sun 13 Dec). Ch. 3–4 dates are team targets. Sources: `build/tasks/*.html` + `style.css`, exported with headless Edge. Finished parts go in the team's shared Drive folder (link in the team chat; upload only after the lead approves). Progress is tracked in Jira (space RASED, key RAS; see D-012).
+
 Status as of 2026-10-29. "Source" is where the material already exists, so it can be adapted instead of written from scratch.
 
 ## 1. Introduction
@@ -13,7 +15,7 @@ Status as of 2026-10-29. "Source" is where the material already exists, so it ca
 | 1.c | Goals of the Project | Draft exists | Proposal §1.5 |
 | 1.d | Currently Available Solutions | Draft exists | Proposal §3.3–3.6 |
 | 1.e | Features Matrix (them vs. us) | Draft exists | Proposal §3.7. Add the unique/multimedia features from the interviews |
-| 1.f | Development methodology + why | **Missing** | Roadmap phases/milestones suggest Iterative & Incremental or Scrum |
+| 1.f | Development methodology + why | **Decided, not written** (2026-11-17) | Scrum-based iterative & incremental, 1-week sprints, Jira (D-012) |
 
 ## 2. Requirements Analysis
 

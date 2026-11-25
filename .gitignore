@@ -20,3 +20,6 @@ brand/*.py
 
 # Local document build scripts (not documents)
 build/
+
+# Local Claude Code / app config
+.claude/

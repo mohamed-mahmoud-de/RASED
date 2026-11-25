@@ -94,8 +94,9 @@ Full detail: `docs/architecture.md`.
 - The whole stack must run under docker-compose on one 16 GB machine, using profiles.
 - SAR / satellite imagery is out of scope.
 
-## Current status (2026-11-14)
+## Current status (2026-11-25)
 
+- **Documentation (Senior Project 1):** one task PDF per step in `docs/course/` (Ch 1–2 send 29 Nov, Ch 3 6 Dec, Ch 4 + full document 13 Dec). Tracked in Jira space RAS (3 epics, 24 tasks, 3 one-week sprints; D-012). Teammates still to be invited to Jira.
 - **Direction (D-010, ~2026-11-01):** after meeting Captain-2 face to face, RASED focuses on **import/export shipments**: importer/forwarder adds a B/L → ship tracked → anchorage-wait forecast → realistic berth date at Alexandria → papers-vs.-ship warning + cost of delay. Horizon is **days** (1–3), not 6–12 h. The "What this is" section above still describes the old port-operator framing; read `docs/positioning.md` first.
 - **Closest competitor: Nowlun** (Alexandria digital forwarder): free tracking, B/L upload, WhatsApp alerts, Arabic, Port Pulse (no forecast). Our edge = prediction, papers-vs.-ship, neutrality, cost in EGP. Proposed decisions P-012…P-016 (vessel view, grounded chatbot, horizon, extra features).
 - **Proposal v3 (2026-11-14)** at `docs/proposal/proposal.pdf`, built from the prototype. Proposes new milestones (P-018).
