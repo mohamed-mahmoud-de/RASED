@@ -28,6 +28,8 @@
 | `rased_logo_horizontal.svg`, `.png` | Mark beside RASED: **document headers** and slide footers |
 | `rased_icon.svg`, `.png` | Mark only |
 | `rased_appicon.svg`, `.png` | Mark on a navy rounded tile: avatar, favicon (readable down to 16 px) |
+| `rased_banner.png` | 2560×1440 scene: container ship at night under a radar sweep, logo top-right, tagline "SEE YOUR SHIP COMING". **Jira board background**, slide backgrounds |
+| `rased_readme_banner.png` | Wide crop of the banner (1600×739) for the top of the GitHub README |
 | `rased_logo.py` | Regenerates the SVGs: `python brand/rased_logo.py`. PNGs are rendered from the SVGs at 4× (PyMuPDF) |
 
 The v2 logo was rebuilt as a vector from the approved design sheet (`Chosen_navy_Outfit_capitals`), so it stays sharp at any print size.
